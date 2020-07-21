@@ -13,6 +13,7 @@ import datetime
 import glob
 import json
 
+# Left click callback
 def callback(event):
     print ("left clicked at: ", event.x, event.y)
     global pts
@@ -31,6 +32,7 @@ def callback(event):
     panel.configure(image=photo1)
     panel.photo = photo1
 
+# Mouse wheel click
 def callback2(event):
     print ("right clicked at: ", event.x, event.y)
     global pts
@@ -53,11 +55,13 @@ def append_json(filename, json_dict):
     with open(filename, 'a') as json_file:
         json.dump(json_dict, json_file, indent=15)
 
+# Write data to json file
 def write_json(filename, json_dict):
     with open(filename, 'w') as json_file:
         json.dump(json_dict, json_file, indent=15)
     print("Write on JSON completed")
 
+# Read image from disk and update Tkinter GUI
 def read_image(list_images, label):
     global image_idx
     #image = cv.imread(list_images[image_idx])
@@ -67,23 +71,16 @@ def read_image(list_images, label):
     label.configure(image=photo1)
     label.photo = photo1
     print("current idx",image_idx)
-
-    json_dict = {"filename": list_images[image_idx],
-    "height": pil_img.size[1],
-    "width": pil_img.size[0],
-    "id": image_idx
-    }
-    append_json("coco_images.json", json_dict)
-
-
     global pts 
     pts = []
-
+    
+# Clean current keypoint list
 def clean_list():
     global pts
     pts = []
     pass
 
+#Annotate current image (save on python dict)
 def annotate(label):
     print("Annotation.")
     # print(pts)
@@ -111,7 +108,7 @@ def annotate(label):
     pts = []
     image_idx += 1
     if (image_idx == len(list_images)):
-        write_json("robish.json", json_dict)
+        write_json("output.json", json_dict)
     
     global panel
     read_image(list_images, panel)
