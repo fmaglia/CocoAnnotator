@@ -60,10 +60,7 @@ def write_json(filename, json_dict):
 
 def read_image(list_images, label):
     global image_idx
-    image = cv.imread(list_images[image_idx])
-    # cv.imshow("example",image)
-    # cv.waitKey(0)
-    # pil_img = PIL_Image.fromarray(image)
+    #image = cv.imread(list_images[image_idx])
     
     pil_img = PIL_Image.open(list_images[image_idx])
     photo1 = PIL_ImageTk.PhotoImage(pil_img)
@@ -72,8 +69,8 @@ def read_image(list_images, label):
     print("current idx",image_idx)
 
     json_dict = {"filename": list_images[image_idx],
-    "height": image.shape[0],
-    "width": image.shape[1],
+    "height": pil_img.size[1],
+    "width": pil_img.size[0],
     "id": image_idx
     }
     append_json("coco_images.json", json_dict)
@@ -110,14 +107,6 @@ def annotate(label):
                 "image_id": image_idx,
                 "id": image_idx
             })
-    # json_dict = {"image_id": image_idx,
-    # "num_keypoints": len(pts),
-    # "keypoints": pts
-    # }
-
-    # append_json('coco_annotations.json', json_dict)
-
-    # print("Write on JSON completed")
 
     pts = []
     image_idx += 1
@@ -174,7 +163,6 @@ if __name__ == '__main__':
             }
         ]
     }
-    # embed()
     
 
     list_images = []
@@ -183,10 +171,7 @@ if __name__ == '__main__':
     "/home/federico/imgRealsense"]
 
     for j in range(len(list_path)):
-        if (j < 2):
-            str_condition = list_path[j]+"/*/*.jpg"
-        else:
-            str_condition = list_path[j]+"/*.jpg"
+        str_condition = list_path[j]+"/*.jpg"
         for name in glob.glob(str_condition):
             list_images.append(name)
     
@@ -194,7 +179,6 @@ if __name__ == '__main__':
 
     image_idx = 0
     for i in range(len(list_images)):
-        # list_images.append(name)
         image = cv.imread(list_images[i])
         json_dict['licenses'].append(            {
                 "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/",
@@ -212,7 +196,7 @@ if __name__ == '__main__':
             #"flickr_url": "http://farm7.staticflickr.com/6116/6255196340_da26cf2c9e_z.jpg",
             "id": i
         })
-
+    # remove example elements added to python dictionary
     del json_dict["licenses"][0]
     del json_dict["images"][0]
     del json_dict["annotations"][0]
@@ -259,4 +243,4 @@ if __name__ == '__main__':
 
     root.mainloop()
 
-    print('Example finished successfully')
+    print('Annotation completed successfully')
