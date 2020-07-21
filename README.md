@@ -14,6 +14,8 @@ Remember to add the image folder path in python list_path.
 # Usage
 python3 coco_annotator.py
 
+The output file, that contains all the data in COCO style format, is called "output.json".
+
 # Pipeline
 * At the beginning you need to click to "Read image".
 * Then, you can annotate your image clicking with left (visibile point) or wheel (not visibile point).
