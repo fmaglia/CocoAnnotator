@@ -1,5 +1,5 @@
 # CocoAnnotator
-COCO style format keypoint annotator.
+COCO style format keypoint annotator for regression task on custom dataset.
 This python script allows to annotate in COCO style format your custom dataset.
 At the end of the process, it writes all the data in a JSON file (output.json).
 
