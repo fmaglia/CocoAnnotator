@@ -12,7 +12,7 @@ At the end of the process, it writes all the data in a JSON file (output.json).
 Remember to add the image folder path in python list_path.
 
 # Usage
-> python3 coco_annotator.py
+`python3 coco_annotator.py`
 
 # Pipeline
 * At the beginning you need to click to "Read image".
