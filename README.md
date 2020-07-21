@@ -1,7 +1,7 @@
 # CocoAnnotator
 COCO style format keypoint annotator.
 This python script allows to annotate in COCO style format your custom dataset.
-At the end of the process, it writes all the data in a JSON file.
+At the end of the process, it writes all the data in a JSON file (output.json).
 
 # Requirements
 * PIL
@@ -13,8 +13,6 @@ Remember to add the image folder path in python list_path.
 
 # Usage
 python3 coco_annotator.py
-
-The output file, that contains all the data in COCO style format, is called "output.json".
 
 # Pipeline
 * At the beginning you need to click to "Read image".
